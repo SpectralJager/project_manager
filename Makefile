@@ -8,4 +8,4 @@ templ:
 	templ generate ./templates/templates.tmpl
 
 tw:
-	./tailwing build -o static/main.css --watch
+	./tailwing build -i input.css -o static/main.css --watch
