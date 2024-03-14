@@ -1,6 +1,7 @@
 -- init
 create table if not exists users (
     id integer primary key,
+    invite text unique not null,
     username text unique not null,
     password text unique not null
 );
@@ -10,26 +11,15 @@ create table if not exists projects (
     name text not null,
     description text,
     leader_id int not null
-
 );
 
 create table if not exists tasks (
     id int primary key,
+    project_id int not null,
+    mantainer_id int not null,
+    status int not null,
     name text not null,
     description text,
-    started_at timestamp,
-    updated_at timestamp,
-    finished_at timestamp
-);
-
-create table if not exists users_projects (
-    id int primary key,
-    user_id int not null,
-    project_id int not null
-);
-
-create table if not exists users_tasks (
-    id int primary key,
-    user_id int not null,
-    task_id int not null
+    created_at timestamp,
+    updated_at timestamp
 );

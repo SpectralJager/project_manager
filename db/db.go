@@ -24,33 +24,137 @@ func New(db DBTX) *Queries {
 func Prepare(ctx context.Context, db DBTX) (*Queries, error) {
 	q := Queries{db: db}
 	var err error
+	if q.createProjectStmt, err = db.PrepareContext(ctx, createProject); err != nil {
+		return nil, fmt.Errorf("error preparing query CreateProject: %w", err)
+	}
+	if q.createTaskStmt, err = db.PrepareContext(ctx, createTask); err != nil {
+		return nil, fmt.Errorf("error preparing query CreateTask: %w", err)
+	}
 	if q.createUserStmt, err = db.PrepareContext(ctx, createUser); err != nil {
 		return nil, fmt.Errorf("error preparing query CreateUser: %w", err)
 	}
-	if q.getUserStmt, err = db.PrepareContext(ctx, getUser); err != nil {
-		return nil, fmt.Errorf("error preparing query GetUser: %w", err)
+	if q.getProjectByIdStmt, err = db.PrepareContext(ctx, getProjectById); err != nil {
+		return nil, fmt.Errorf("error preparing query GetProjectById: %w", err)
 	}
-	if q.listUsersStmt, err = db.PrepareContext(ctx, listUsers); err != nil {
-		return nil, fmt.Errorf("error preparing query ListUsers: %w", err)
+	if q.getProjectsByLeaderStmt, err = db.PrepareContext(ctx, getProjectsByLeader); err != nil {
+		return nil, fmt.Errorf("error preparing query GetProjectsByLeader: %w", err)
+	}
+	if q.getProjectsByNameStmt, err = db.PrepareContext(ctx, getProjectsByName); err != nil {
+		return nil, fmt.Errorf("error preparing query GetProjectsByName: %w", err)
+	}
+	if q.getTaskByIdStmt, err = db.PrepareContext(ctx, getTaskById); err != nil {
+		return nil, fmt.Errorf("error preparing query GetTaskById: %w", err)
+	}
+	if q.getTasksByMaintainerStmt, err = db.PrepareContext(ctx, getTasksByMaintainer); err != nil {
+		return nil, fmt.Errorf("error preparing query GetTasksByMaintainer: %w", err)
+	}
+	if q.getTasksByNameStmt, err = db.PrepareContext(ctx, getTasksByName); err != nil {
+		return nil, fmt.Errorf("error preparing query GetTasksByName: %w", err)
+	}
+	if q.getTasksByProjectStmt, err = db.PrepareContext(ctx, getTasksByProject); err != nil {
+		return nil, fmt.Errorf("error preparing query GetTasksByProject: %w", err)
+	}
+	if q.getUserByCredStmt, err = db.PrepareContext(ctx, getUserByCred); err != nil {
+		return nil, fmt.Errorf("error preparing query GetUserByCred: %w", err)
+	}
+	if q.getUserByIdStmt, err = db.PrepareContext(ctx, getUserById); err != nil {
+		return nil, fmt.Errorf("error preparing query GetUserById: %w", err)
+	}
+	if q.getUserByInviteStmt, err = db.PrepareContext(ctx, getUserByInvite); err != nil {
+		return nil, fmt.Errorf("error preparing query GetUserByInvite: %w", err)
+	}
+	if q.updateProjectDescriptionByIdStmt, err = db.PrepareContext(ctx, updateProjectDescriptionById); err != nil {
+		return nil, fmt.Errorf("error preparing query UpdateProjectDescriptionById: %w", err)
+	}
+	if q.updateProjectNameByIdStmt, err = db.PrepareContext(ctx, updateProjectNameById); err != nil {
+		return nil, fmt.Errorf("error preparing query UpdateProjectNameById: %w", err)
+	}
+	if q.updateTaskStatusByIdStmt, err = db.PrepareContext(ctx, updateTaskStatusById); err != nil {
+		return nil, fmt.Errorf("error preparing query UpdateTaskStatusById: %w", err)
 	}
 	return &q, nil
 }
 
 func (q *Queries) Close() error {
 	var err error
+	if q.createProjectStmt != nil {
+		if cerr := q.createProjectStmt.Close(); cerr != nil {
+			err = fmt.Errorf("error closing createProjectStmt: %w", cerr)
+		}
+	}
+	if q.createTaskStmt != nil {
+		if cerr := q.createTaskStmt.Close(); cerr != nil {
+			err = fmt.Errorf("error closing createTaskStmt: %w", cerr)
+		}
+	}
 	if q.createUserStmt != nil {
 		if cerr := q.createUserStmt.Close(); cerr != nil {
 			err = fmt.Errorf("error closing createUserStmt: %w", cerr)
 		}
 	}
-	if q.getUserStmt != nil {
-		if cerr := q.getUserStmt.Close(); cerr != nil {
-			err = fmt.Errorf("error closing getUserStmt: %w", cerr)
+	if q.getProjectByIdStmt != nil {
+		if cerr := q.getProjectByIdStmt.Close(); cerr != nil {
+			err = fmt.Errorf("error closing getProjectByIdStmt: %w", cerr)
 		}
 	}
-	if q.listUsersStmt != nil {
-		if cerr := q.listUsersStmt.Close(); cerr != nil {
-			err = fmt.Errorf("error closing listUsersStmt: %w", cerr)
+	if q.getProjectsByLeaderStmt != nil {
+		if cerr := q.getProjectsByLeaderStmt.Close(); cerr != nil {
+			err = fmt.Errorf("error closing getProjectsByLeaderStmt: %w", cerr)
+		}
+	}
+	if q.getProjectsByNameStmt != nil {
+		if cerr := q.getProjectsByNameStmt.Close(); cerr != nil {
+			err = fmt.Errorf("error closing getProjectsByNameStmt: %w", cerr)
+		}
+	}
+	if q.getTaskByIdStmt != nil {
+		if cerr := q.getTaskByIdStmt.Close(); cerr != nil {
+			err = fmt.Errorf("error closing getTaskByIdStmt: %w", cerr)
+		}
+	}
+	if q.getTasksByMaintainerStmt != nil {
+		if cerr := q.getTasksByMaintainerStmt.Close(); cerr != nil {
+			err = fmt.Errorf("error closing getTasksByMaintainerStmt: %w", cerr)
+		}
+	}
+	if q.getTasksByNameStmt != nil {
+		if cerr := q.getTasksByNameStmt.Close(); cerr != nil {
+			err = fmt.Errorf("error closing getTasksByNameStmt: %w", cerr)
+		}
+	}
+	if q.getTasksByProjectStmt != nil {
+		if cerr := q.getTasksByProjectStmt.Close(); cerr != nil {
+			err = fmt.Errorf("error closing getTasksByProjectStmt: %w", cerr)
+		}
+	}
+	if q.getUserByCredStmt != nil {
+		if cerr := q.getUserByCredStmt.Close(); cerr != nil {
+			err = fmt.Errorf("error closing getUserByCredStmt: %w", cerr)
+		}
+	}
+	if q.getUserByIdStmt != nil {
+		if cerr := q.getUserByIdStmt.Close(); cerr != nil {
+			err = fmt.Errorf("error closing getUserByIdStmt: %w", cerr)
+		}
+	}
+	if q.getUserByInviteStmt != nil {
+		if cerr := q.getUserByInviteStmt.Close(); cerr != nil {
+			err = fmt.Errorf("error closing getUserByInviteStmt: %w", cerr)
+		}
+	}
+	if q.updateProjectDescriptionByIdStmt != nil {
+		if cerr := q.updateProjectDescriptionByIdStmt.Close(); cerr != nil {
+			err = fmt.Errorf("error closing updateProjectDescriptionByIdStmt: %w", cerr)
+		}
+	}
+	if q.updateProjectNameByIdStmt != nil {
+		if cerr := q.updateProjectNameByIdStmt.Close(); cerr != nil {
+			err = fmt.Errorf("error closing updateProjectNameByIdStmt: %w", cerr)
+		}
+	}
+	if q.updateTaskStatusByIdStmt != nil {
+		if cerr := q.updateTaskStatusByIdStmt.Close(); cerr != nil {
+			err = fmt.Errorf("error closing updateTaskStatusByIdStmt: %w", cerr)
 		}
 	}
 	return err
@@ -90,19 +194,45 @@ func (q *Queries) queryRow(ctx context.Context, stmt *sql.Stmt, query string, ar
 }
 
 type Queries struct {
-	db             DBTX
-	tx             *sql.Tx
-	createUserStmt *sql.Stmt
-	getUserStmt    *sql.Stmt
-	listUsersStmt  *sql.Stmt
+	db                               DBTX
+	tx                               *sql.Tx
+	createProjectStmt                *sql.Stmt
+	createTaskStmt                   *sql.Stmt
+	createUserStmt                   *sql.Stmt
+	getProjectByIdStmt               *sql.Stmt
+	getProjectsByLeaderStmt          *sql.Stmt
+	getProjectsByNameStmt            *sql.Stmt
+	getTaskByIdStmt                  *sql.Stmt
+	getTasksByMaintainerStmt         *sql.Stmt
+	getTasksByNameStmt               *sql.Stmt
+	getTasksByProjectStmt            *sql.Stmt
+	getUserByCredStmt                *sql.Stmt
+	getUserByIdStmt                  *sql.Stmt
+	getUserByInviteStmt              *sql.Stmt
+	updateProjectDescriptionByIdStmt *sql.Stmt
+	updateProjectNameByIdStmt        *sql.Stmt
+	updateTaskStatusByIdStmt         *sql.Stmt
 }
 
 func (q *Queries) WithTx(tx *sql.Tx) *Queries {
 	return &Queries{
-		db:             tx,
-		tx:             tx,
-		createUserStmt: q.createUserStmt,
-		getUserStmt:    q.getUserStmt,
-		listUsersStmt:  q.listUsersStmt,
+		db:                               tx,
+		tx:                               tx,
+		createProjectStmt:                q.createProjectStmt,
+		createTaskStmt:                   q.createTaskStmt,
+		createUserStmt:                   q.createUserStmt,
+		getProjectByIdStmt:               q.getProjectByIdStmt,
+		getProjectsByLeaderStmt:          q.getProjectsByLeaderStmt,
+		getProjectsByNameStmt:            q.getProjectsByNameStmt,
+		getTaskByIdStmt:                  q.getTaskByIdStmt,
+		getTasksByMaintainerStmt:         q.getTasksByMaintainerStmt,
+		getTasksByNameStmt:               q.getTasksByNameStmt,
+		getTasksByProjectStmt:            q.getTasksByProjectStmt,
+		getUserByCredStmt:                q.getUserByCredStmt,
+		getUserByIdStmt:                  q.getUserByIdStmt,
+		getUserByInviteStmt:              q.getUserByInviteStmt,
+		updateProjectDescriptionByIdStmt: q.updateProjectDescriptionByIdStmt,
+		updateProjectNameByIdStmt:        q.updateProjectNameByIdStmt,
+		updateTaskStatusByIdStmt:         q.updateTaskStatusByIdStmt,
 	}
 }

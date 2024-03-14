@@ -17,27 +17,18 @@ type Project struct {
 
 type Task struct {
 	ID          int64          `json:"id"`
+	ProjectID   int64          `json:"project_id"`
+	MantainerID int64          `json:"mantainer_id"`
+	Status      int64          `json:"status"`
 	Name        string         `json:"name"`
 	Description sql.NullString `json:"description"`
-	StartedAt   sql.NullTime   `json:"started_at"`
+	CreatedAt   sql.NullTime   `json:"created_at"`
 	UpdatedAt   sql.NullTime   `json:"updated_at"`
-	FinishedAt  sql.NullTime   `json:"finished_at"`
 }
 
 type User struct {
 	ID       int64  `json:"id"`
+	Invite   string `json:"invite"`
 	Username string `json:"username"`
 	Password string `json:"password"`
-}
-
-type UsersProject struct {
-	ID        int64 `json:"id"`
-	UserID    int64 `json:"user_id"`
-	ProjectID int64 `json:"project_id"`
-}
-
-type UsersTask struct {
-	ID     int64 `json:"id"`
-	UserID int64 `json:"user_id"`
-	TaskID int64 `json:"task_id"`
 }
