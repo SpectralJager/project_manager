@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/main.css">
+    <script src="https://kit.fontawesome.com/489757ffcd.js" crossorigin="anonymous"></script>
+    <title>Document</title>
+</head>
+<body class="font-main" style="background-image: url('../static/images/bg.svg');">
+    <div class="h-screen w-screen text-pm-5">
+        <div class="flex flex-col max-w-[1440px] h-full mx-auto px-20 pt-4">
+            <div class="h-16 flex flex-row items-center justify-between">
+                <div class="flex flex-row gap-4 items-center">
+                    <img src="../static/images/Logo.svg" alt="" class="size-12">
+                    <span class="uppercase text-3xl font-bold font-title">
+                        <span class="text-pm-1">Pro</span>Jager
+                    </span>
+                </div>
+                <div class="flex flex-row gap-4 items-center font-medium text-xl">
+                    <a href="#" class="transition-colors hover:text-pm-1">
+                        Sign up
+                    </a>
+                    <div class="size-4 rotate-45 bg-pm-1"></div>
+                    <a href="#" class="transition-colors hover:text-pm-1">
+                        Log in
+                    </a>
+                </div>
+            </div>
+            <div class="h-full w-full flex flex-row py-10 gap-4">
+                <div class="flex flex-col gap-4 w-1/4 mt-10">
+                    <span class="text-3xl font-title font-bold">Project</span>
+                    <a href="#" class="flex flex-row items-center gap-4 px-4 py-2 bg-white rounded-lg border-2 transition-colors hover:border-pm-1 hover:text-pm-1">
+                        <i class="fa-solid fa-sheet-plastic"></i> Overview
+                    </a>
+                    <a href="#" class="flex flex-row items-center gap-4 px-4 py-2 bg-white rounded-lg border-2 transition-colors hover:border-pm-1 hover:text-pm-1">
+                        <i class="fa-solid fa-list-check"></i> Tasks
+                    </a>
+                    <a href="#" class="flex flex-row items-center gap-4 px-4 py-2 bg-pm-2 text-pm-4 rounded-lg border-2 transition-colors hover:border-pm-1 hover:text-pm-1">
+                        <i class="fa-solid fa-hand-point-up"></i> Participants
+                    </a>
+                    <a href="#" class="flex flex-row items-center gap-4 px-4 py-2 bg-white rounded-lg border-2 transition-colors hover:border-pm-1 hover:text-pm-1">
+                        <i class="fa-solid fa-gear"></i> Settings
+                    </a>
+                </div>
+                <div class="h-full w-1 bg-pm-3"></div>
+                <div class="w-full h-full flex flex-col mt-10 gap-8">
+                    <div class="flex flex-row gap-4">
+                        <input type="text" name="query" placeholder="Enter user name..." class="w-full ring-0 border-0 border-b-2 focus:ring-0 focus:border-pm-1">
+                    </div>
+                    <div class="overflow-x-scroll">
+                        <table class="w-full text-sm text-left">
+                            <thead class="text-xs uppercase bg-pm-2 text-pm-4">
+                                <tr>
+                                    <th class="px-6 py-3">
+                                        First
+                                    </th>
+                                    <th class="px-6 py-3">
+                                        Second
+                                    </th>
+                                    <th class="px-6 py-3">
+                                        Rights
+                                    </th>
+                                    <th class="px-6 py-3">
+                                        Tasks
+                                    </th>
+                                    <th class="px-6 py-3">
+                                        Actions
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="bg-white border-b hover:bg-pm-3">
+                                    <td class="px-6 py-4 font-medium whitespace-nowrap">
+                                        John
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        Smith
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        Owner
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        12
+                                    </td>
+                                    <td class="px-6 py-4 flex flex-row gap-4">
+                                        <a href="#" class="font-medium text-pm-5 hover:underline">Kill</a>
+                                    </td>
+                                </tr>
+                                <tr class="bg-white border-b hover:bg-pm-3">
+                                    <td class="px-6 py-4 font-medium whitespace-nowrap">
+                                        John
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        Smith
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        Worker
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        12
+                                    </td>
+                                    <td class="px-6 py-4 flex flex-row gap-4">
+                                        <a href="#" class="font-medium text-pm-5 hover:underline">Kill</a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

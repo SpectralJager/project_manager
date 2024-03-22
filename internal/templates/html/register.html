@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/main.css">
+    <script src="https://kit.fontawesome.com/489757ffcd.js" crossorigin="anonymous"></script>
+    <title>Document</title>
+</head>
+<body style="background-image: url('../static/images/bg.svg');">
+    <div class="h-screen w-screen text-pm-5">
+        <div class="flex flex-col max-w-[1440px] h-full mx-auto px-20 pt-4">
+            <div class="h-16 flex flex-row items-center justify-between">
+                <div class="flex flex-row gap-4 items-center">
+                    <img src="../static/images/Logo.svg" alt="" class="size-12">
+                    <span class="uppercase text-3xl font-bold font-title">
+                        <span class="text-pm-1">Pro</span>Jager
+                    </span>
+                </div>
+                <div class="flex flex-row gap-4 items-center font-medium text-xl">
+                    <a href="#" class="transition-colors hover:text-pm-1">
+                        Sign up
+                    </a>
+                    <div class="size-4 rotate-45 bg-pm-1"></div>
+                    <a href="#" class="transition-colors hover:text-pm-1">
+                        Log in
+                    </a>
+                </div>
+            </div>
+            <div class="h-full w-full flex flex-row">
+                <div class="flex flex-col gap-8 w-1/3 bg-white px-8 py-10">
+                    <span class="text-4xl font-bold font-title">
+                        Sign up
+                    </span>
+                    <form class="text-2xl flex flex-col gap-8">
+                        <div class="flex flex-col gap-2">
+                            <label for="email" class="font-medium"><i class="fa-solid fa-envelope"></i> Email</label>
+                            <input type="email" name="email" placeholder="Enter your email..." class="ring-0 border-0 border-b-2 focus:ring-0 focus:border-pm-1 rounded-md">
+                        </div>
+                        <div class="flex flex-col gap-2">
+                            <label for="password" class="font-medium"><i class="fa-solid fa-key"></i> Password</label>
+                            <input type="password" name="password" placeholder="Enter your password..." class="ring-0 border-0 border-b-2 focus:ring-0 focus:border-pm-1 rounded-md">
+                        </div>
+                        <button type="submit" class="px-8 py-2 bg-pm-4 rounded-md text-center font-medium text-xl transition-colors hover:bg-pm-1">
+                            Continue <i class="fa-solid fa-arrow-right"></i>
+                        </button>
+                    </form>
+                    <span class="text-center">Already have account? <a href="#" class="text-pm-1 transition-colors hover:text-pm-4">Log in...</a></span>
+                </div>
+                <img src="../static/images/LoginIllustration.svg" alt="" class="h-full w-2/3 object-cover rounded-lg">
+            </div>
+        </div>
+    </div>
+</body>
+</html>

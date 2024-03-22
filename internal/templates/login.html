@@ -1,0 +1,21 @@
+{{define "login"}}
+{{template "header"}}
+<div class="w-2/6 mx-auto mt-20 px-8 py-4 flex flex-col bg-white border-2 border-pm-5 rounded-md">
+    <span class="text-3xl font-title font-bold">Login</span>
+    <form action="/login/check" method="post" class="text-2xl flex flex-col gap-8 mt-8">
+        <div class="flex flex-col gap-2">
+            <label for="email" class="font-medium"><i class="fa-solid fa-envelope"></i> Email</label>
+            <input type="email" name="email" placeholder="Enter your email..." class="ring-0 border-0 border-b-2 focus:ring-0 focus:border-pm-1 rounded-md">
+        </div>
+        <div class="flex flex-col gap-2">
+            <label for="password" class="font-medium"><i class="fa-solid fa-key"></i> Password</label>
+            <input type="password" name="password" placeholder="Enter your password..." class="ring-0 border-0 border-b-2 focus:ring-0 focus:border-pm-1 rounded-md">
+        </div>
+        <button type="submit" class="px-8 py-2 bg-pm-4 rounded-md text-center font-medium text-xl transition-colors hover:bg-pm-1">
+            Continue <i class="fa-solid fa-arrow-right"></i>
+        </button>
+    </form>
+    <span class="text-center mt-4">Or create a <a href="/register" class="text-pm-1 transition-colors hover:text-pm-4">new account...</a></span>
+</div>
+{{template "footer"}}
+{{end}}
