@@ -17,6 +17,8 @@ func NewTemplatesRenderer() *TemplateRenderer {
 			"./internal/templates/base.html",
 			"./internal/templates/index.html",
 			"./internal/templates/login.html",
+			"./internal/templates/register.html",
+			"./internal/templates/profile.html",
 		)),
 	}
 }
