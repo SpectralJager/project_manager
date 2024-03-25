@@ -1,4 +1,4 @@
-{{define "profile"}}
+{{define "profile_overview"}}
 {{template "header"}}
 <div class="h-full w-full flex flex-row py-10 gap-4">
     <div class="flex flex-col gap-4 w-1/4 mt-10">
@@ -18,19 +18,22 @@
     </div>
     <div class="h-full w-1 bg-pm-5"></div>
     <div class="w-full h-full flex flex-col mt-10 gap-8">
-        <div class="flex flex-row gap-4">
+        <form class="flex flex-row gap-4" method="post" hx-post="/profile/overview/search" hx-target="tbody" hx-swap="innerHTML">
             <input type="text" name="query" placeholder="Enter project name..." class="w-full ring-0 border-0 border-b-2 focus:ring-0 focus:border-pm-1">
             <select name="status" class="ring-0 focus:ring-0 focus:border-pm-1 border-pm-5 border-0 border-b-2 rounded-none"> 
-                <option value="all" class="" selected>All</option>
+                <option value="" class="" selected>All</option>
                 <option value="active">Active</option>
-                <option value="finished">Finished</option>
-                <option value="paused">Paused</option>
+                <option value="done">Done</option>
+                <option value="stoped">Stoped</option>
             </select>
             <select name="owner" class="ring-0 focus:ring-0 focus:border-pm-1 border-pm-5 border-0 border-b-2 rounded-none"> 
-                <option value="all" class="" selected>All</option>
+                <option value="" class="" selected>All</option>
                 <option value="you">You</option>
             </select>
-        </div>
+            <button type="submit" class="px-4 py-2 bg-white rounded-md text-center font-medium text-xl border-2 border-pm-5 transition-colors hover:border-pm-1 hover:text-pm-1">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </button>
+        </form>
         <div class="overflow-x-scroll">
             <table class="w-full text-sm text-left">
                 <thead class="text-xs uppercase bg-pm-2 text-pm-4">
@@ -53,24 +56,26 @@
                     </tr>
                 </thead>
                 <tbody>
-                    {{block "profile_table_row" .}}
+                    {{block "profile_overview_data" .Projects}}
+                    {{range .}}
                     <tr class="bg-white border-b hover:bg-pm-3">
                         <td class="px-6 py-4 font-medium whitespace-nowrap">
-                            Lorem ipsum dolor sit.
+                            {{.Name}}
                         </td>
                         <td class="px-6 py-4">
-                            Active
+                            {{.Status}}
                         </td>
                         <td class="px-6 py-4">
-                            12
+                            {{.Tasks}}
                         </td>
                         <td class="px-6 py-4">
-                            You
+                            {{.Owner}}
                         </td>
                         <td class="px-6 py-4 flex flex-row gap-4">
-                            <a href="#" class="font-medium text-pm-5 hover:underline">Follow</a>
+                            <a href="/project/{{.Id}}" class="font-medium text-pm-5 hover:underline">Follow</a>
                         </td>
                     </tr>
+                    {{end}}
                     {{end}}
                 </tbody>
             </table>

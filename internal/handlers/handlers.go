@@ -14,6 +14,10 @@ func HandleLogin(c echo.Context) error {
 	return c.Render(200, "login", nil)
 }
 
+func HandleRegister(c echo.Context) error {
+	return c.Render(200, "register", nil)
+}
+
 func HandleLoginCheck(c echo.Context) error {
 	email := c.FormValue("email")
 	password := c.FormValue("password")
@@ -23,15 +27,7 @@ func HandleLoginCheck(c echo.Context) error {
 	return c.Redirect(302, "/profile")
 }
 
-func HandleRegister(c echo.Context) error {
-	return c.Render(200, "register", nil)
-}
-
 func HandleRegisterCheck(c echo.Context) error {
 	fmt.Println(c.FormParams())
 	return c.Redirect(302, "/login")
-}
-
-func HandleProfile(c echo.Context) error {
-	return c.Render(200, "profile", nil)
 }
